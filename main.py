@@ -32,9 +32,18 @@ form = """
                 <textarea id='text' name="text">{0}</textarea>
                 <input type = "submit" />
             </form>
-        </body>
-    </html>
     """
+
+header = """
+        <h1>
+"""
+
+
+footer = """
+        </h1>
+    </body>
+</html>
+"""
 
 @app.route("/")
 def index():
@@ -47,6 +56,6 @@ def encrypt():
     encryption_key = int(request.form["rot"])
     text_to_encrypt = str(request.form["text"])
     encrypted_text = rotate_string(text_to_encrypt, encryption_key)
-    return form.format(encrypted_text)
+    return header + form.format(encrypted_text) + footer
 
 app.run()
